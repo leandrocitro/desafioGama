@@ -304,20 +304,17 @@ function exercicio14() {
             deptoMaisValioso = listaDeptos[j];
         }
     }
-    console.log("Departamento mais valioso é " + deptoMaisValioso.nomeDepto + ", somando " + deptoMaisValioso.totalInventario.toLocaleString('pt-br', {
-        style: 'currency',
-        currency: 'BRL'
-    }));
+    console.log(`O departamento mais valioso é o: ${deptoMaisValioso.nomeDepto}, cuja a soma total é: ${deptoMaisValioso.totalInventario.toLocaleString()}`);
 }
 
 // Exercício 15
 
 function exercicio15() {
-    var listaDeptos = [];
-    let codDepto = 0;
+    var listaDepartamentos = [];
+    let codigoDepartamento = 0;
     for (i = 0; i < listaProdutos.length; i++) {
         let produto = listaProdutos[i];
-        if (produto.departamento.idDepto != codDepto) {
+        if (produto.departamento.idDepto != codigoDepartamento) {
             let itemLista = {
                 nomeDepto: produto.departamento.nomeDepto,
                 idDepto: produto.departamento.idDepto,
@@ -325,17 +322,17 @@ function exercicio15() {
                 valorTotal: 0,
                 totalInventario: 0
             };
-            listaDeptos.push(itemLista);
-            codDepto = produto.departamento.idDepto;
+            listaDepartamentos.push(itemLista);
+            codigoDepartamento = produto.departamento.idDepto;
         }
     }
 
     for (i = 0; i < listaProdutos.length; i++) {
         let produto = listaProdutos[i];
-        for (j = 0; j < listaDeptos.length; j++) {
-            if (produto.departamento.idDepto == listaDeptos[j].idDepto) {
-                listaDeptos[j].valorTotal += produto.preco;
-                listaDeptos[j].somatoriaItens += produto.qtdEstoque;
+        for (j = 0; j < listaDepartamentos.length; j++) {
+            if (produto.departamento.idDepto == listaDepartamentos[j].idDepto) {
+                listaDepartamentos[j].valorTotal += produto.preco;
+                listaDepartamentos[j].somatoriaItens += produto.qtdEstoque;
                 break;
             }
         }
@@ -343,16 +340,13 @@ function exercicio15() {
     let deptoMenosValioso = {
         totalInventario: 0
     }
-    for (j = 0; j < listaDeptos.length; j++) {
-        listaDeptos[j].totalInventario += listaDeptos[j].valorTotal * listaDeptos[j].somatoriaItens;
+    for (j = 0; j < listaDepartamentos.length; j++) {
+        listaDepartamentos[j].totalInventario += listaDepartamentos[j].valorTotal * listaDepartamentos[j].somatoriaItens;
         if (deptoMenosValioso.totalInventario == 0) {
-            deptoMenosValioso = listaDeptos[j];
-        } else if (listaDeptos[j].totalInventario < deptoMenosValioso.totalInventario) {
-            deptoMenosValioso = listaDeptos[j];
+            deptoMenosValioso = listaDepartamentos[j];
+        } else if (listaDepartamentos[j].totalInventario < deptoMenosValioso.totalInventario) {
+            deptoMenosValioso = listaDepartamentos[j];
         }
     }
-    console.log("Departamento menos valioso é " + deptoMenosValioso.nomeDepto + ", somando " + deptoMenosValioso.totalInventario.toLocaleString('pt-br', {
-        style: 'currency',
-        currency: 'BRL'
-    }));
+    console.log(`O departamento menos valioso é o: ${deptoMenosValioso.nomeDepto}, cuja a soma total é: ${deptoMenosValioso.totalInventario.toFixed(2)}`);
 }
