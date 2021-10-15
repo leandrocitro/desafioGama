@@ -1,4 +1,4 @@
-Entrega exercícios 1 ao 10 referente a 1 semana.
+Entrega exercícios 1 ao 15 referente a 1 e 2 semana.
 
 Alunos:
 

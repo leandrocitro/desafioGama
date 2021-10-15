@@ -144,5 +144,215 @@ function exercicio10() {
 
     let ticketMedio = total / qtd;
     console.log("O ticket médio é: " + ticketMedio.toFixed(2));
-    
+
+}
+
+
+// Exercício 11
+function exercicio11() {
+
+    var listaDeptos = [];
+    let codDepto = 0;
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        if (produto.departamento.idDepto != codDepto) {
+            let itemLista = {
+                nomeDepto: produto.departamento.nomeDepto,
+                idDepto: produto.departamento.idDepto,
+                somatoriaItens: 0
+            };
+            listaDeptos.push(itemLista);
+            codDepto = produto.departamento.idDepto;
+        }
+    }
+
+    for (i = 0; i < listaProdutos.length; i++) {
+
+        let produto = listaProdutos[i];
+
+
+        for (j = 0; j < listaDeptos.length; j++) {
+            if (produto.departamento.idDepto == listaDeptos[j].idDepto) {
+                listaDeptos[j].somatoriaItens += produto.qtdEstoque;
+                break;
+            }
+        }
+    }
+
+    console.log(listaDeptos);
+}
+
+
+// Exercício 12
+
+function exercicio12() {
+    var listDeptos = [];
+    let codDeptos = 0;
+
+    for (i = 0; i < listaProdutos.length; i++) {
+
+        let produto = listaProdutos[i];
+        if (produto.departamento.idDepto != codDeptos) {
+
+            let listItem = {
+                nomeDepto: produto.departamento.nomeDepto,
+                idDepto: produto.departamento.idDepto,
+                somatoriaItens: 0
+            }
+            listDeptos.push(listItem)
+            codDeptos = produto.departamento.idDepto
+        }
+    }
+
+
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i]
+
+        for (j = 0; j < listDeptos.length; j++) {
+
+
+            if (produto.departamento.idDepto == listDeptos[j].idDepto) {
+                listDeptos[j].somatoriaItens += (produto.qtdEstoque * produto.preco)
+                break
+            }
+        }
+    }
+
+    console.log(listDeptos)
+
+}
+
+
+// Exercício 13
+
+function exercicio13() {
+    var listaDeptos = [];
+    let codDepto = 0;
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        if (produto.departamento.idDepto != codDepto) {
+            let itemLista = {
+                nomeDepto: produto.departamento.nomeDepto,
+                idDepto: produto.departamento.idDepto,
+                somatoriaItens: 0,
+                totalEstoque: 0,
+                ticketMedio: 0
+            };
+            listaDeptos.push(itemLista);
+            codDepto = produto.departamento.idDepto;
+        }
+    }
+
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        for (j = 0; j < listaDeptos.length; j++) {
+            if (produto.departamento.idDepto == listaDeptos[j].idDepto) {
+                listaDeptos[j].somatoriaItens += produto.qtdEstoque;
+                listaDeptos[j].totalEstoque += produto.preco * produto.qtdEstoque;
+                break;
+            }
+        }
+    }
+
+
+    for (j = 0; j < listaDeptos.length; j++) {
+        listaDeptos[j].ticketMedio = listaDeptos[j].totalEstoque / listaDeptos[j].somatoriaItens;
+    }
+
+    console.log(listaDeptos);
+
+
+}
+
+
+// Exercício 14
+
+function exercicio14() {
+    var listaDeptos = [];
+    let codDepto = 0;
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        if (produto.departamento.idDepto != codDepto) {
+            let itemLista = {
+                nomeDepto: produto.departamento.nomeDepto,
+                idDepto: produto.departamento.idDepto,
+                somatoriaItens: 0,
+                valorTotal: 0,
+                totalInventario: 0
+            };
+            listaDeptos.push(itemLista);
+            codDepto = produto.departamento.idDepto;
+        }
+    }
+
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        for (j = 0; j < listaDeptos.length; j++) {
+            if (produto.departamento.idDepto == listaDeptos[j].idDepto) {
+                listaDeptos[j].valorTotal += produto.preco;
+                listaDeptos[j].somatoriaItens += produto.qtdEstoque;
+                break;
+            }
+        }
+    }
+    let deptoMaisValioso = {
+        totalInventario: 0
+    }
+    for (j = 0; j < listaDeptos.length; j++) {
+        listaDeptos[j].totalInventario += listaDeptos[j].valorTotal * listaDeptos[j].somatoriaItens;
+        if (deptoMaisValioso.totalInventario < listaDeptos[j].totalInventario) {
+            deptoMaisValioso = listaDeptos[j];
+        }
+    }
+    console.log("Departamento mais valioso é " + deptoMaisValioso.nomeDepto + ", somando " + deptoMaisValioso.totalInventario.toLocaleString('pt-br', {
+        style: 'currency',
+        currency: 'BRL'
+    }));
+}
+
+// Exercício 15
+
+function exercicio15() {
+    var listaDeptos = [];
+    let codDepto = 0;
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        if (produto.departamento.idDepto != codDepto) {
+            let itemLista = {
+                nomeDepto: produto.departamento.nomeDepto,
+                idDepto: produto.departamento.idDepto,
+                somatoriaItens: 0,
+                valorTotal: 0,
+                totalInventario: 0
+            };
+            listaDeptos.push(itemLista);
+            codDepto = produto.departamento.idDepto;
+        }
+    }
+
+    for (i = 0; i < listaProdutos.length; i++) {
+        let produto = listaProdutos[i];
+        for (j = 0; j < listaDeptos.length; j++) {
+            if (produto.departamento.idDepto == listaDeptos[j].idDepto) {
+                listaDeptos[j].valorTotal += produto.preco;
+                listaDeptos[j].somatoriaItens += produto.qtdEstoque;
+                break;
+            }
+        }
+    }
+    let deptoMenosValioso = {
+        totalInventario: 0
+    }
+    for (j = 0; j < listaDeptos.length; j++) {
+        listaDeptos[j].totalInventario += listaDeptos[j].valorTotal * listaDeptos[j].somatoriaItens;
+        if (deptoMenosValioso.totalInventario == 0) {
+            deptoMenosValioso = listaDeptos[j];
+        } else if (listaDeptos[j].totalInventario < deptoMenosValioso.totalInventario) {
+            deptoMenosValioso = listaDeptos[j];
+        }
+    }
+    console.log("Departamento menos valioso é " + deptoMenosValioso.nomeDepto + ", somando " + deptoMenosValioso.totalInventario.toLocaleString('pt-br', {
+        style: 'currency',
+        currency: 'BRL'
+    }));
 }
